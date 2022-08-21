@@ -20,7 +20,8 @@
     "typecheck": "tsc --noEmit --skipLibCheck",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "deploy": "npm run build && now --prod --token $VERCEL_TOKEN"
   },
   "dependencies": {
     "@nestjs/common": "^9.0.0",
