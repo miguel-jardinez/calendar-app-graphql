@@ -30,3 +30,10 @@ jobs:
       - name: Run Test
         run: npm run test
 
+      - name: Deploy to Vercel
+        run: npm run deploy
+
+        env:
+          CI: true
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+
