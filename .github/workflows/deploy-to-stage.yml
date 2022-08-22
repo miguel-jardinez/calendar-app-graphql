@@ -2,7 +2,7 @@ name: Deploy application
 
 on:
   push:
-    branches: [development]
+    branches: [main]
 
 jobs:
   validate:
@@ -13,24 +13,15 @@ jobs:
         node-version: [8.x, 10.x, 12.x]
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Use Node.js ${{ matrix.node-version }}
-    - uses: actions/setup-node@v2
-      with:
-        node-version: ${{ matrix.node-version }}
-    - name: Install dependencies
-      run: npm ci
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
 
-    - name: Lint
-      run: npm run eslint
+      - name: Setup node
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
 
-    - name: Testing
-      run: npm run test
-
-    - name: Deploy to Vercel
-      run: npm run deploy
-
-    env:
-      CI: true,
-      VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+      - name: Install Dependencies
 
