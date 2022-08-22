@@ -19,5 +19,14 @@ jobs:
           node-version: 16
 
       - name: Install dependencies
-        run: npm run ci
+        run: npm run install
+
+      - name: Run Eslint
+        run: npm run lint
+
+      - name: Run TypeChecker
+        run: npm run typecheck
+
+      - name: Run Test
+        run: npm run test
 
